@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>Make your selections</title>
+</head>
+<body>
+    Hi {{ person }}!
+    <form action="/madlib">
+    	Enter a name:
+    	<input type="text" name="person_name"><br>
+    	Select a color:
+    	<select name="color">
+    		<option value="red">Red</option>
+    		<option value="pink">Pink</option>
+    		<option value="white">White</option>
+    	</select><br>
+    	Enter a noun:
+    	<input type="text" name="noun"><br>
+    	Select an adjective:
+    	<select name="adjective">
+    		<option value="big">Big</option>
+    		<option value="medium">Medium</option>
+    		<option value="small">Small</option>
+    	</select><br>
+    	<input type="submit">
+    </form>
+</body>
+</html>
