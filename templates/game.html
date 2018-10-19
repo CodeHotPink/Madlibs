@@ -10,18 +10,24 @@
     	<input type="text" name="person_name"><br>
     	Select a color:
     	<select name="color">
-    		<option value="red">Red</option>
-    		<option value="pink">Pink</option>
-    		<option value="white">White</option>
+            {% for color in colors %}
+        		<option value={{ color }}>{{ color }}</option>
+            {% endfor %}
     	</select><br>
     	Enter a noun:
     	<input type="text" name="noun"><br>
     	Select an adjective:
     	<select name="adjective">
-    		<option value="big">Big</option>
-    		<option value="medium">Medium</option>
-    		<option value="small">Small</option>
+            {% for adjective in adjectives %}
+                <option value={{ adjective }}>{{ adjective }}</option>
+            {% endfor %}
     	</select><br>
+        Select animals:
+            {% for animal in animals %}
+                <input type="checkbox" name="animals" value={{animal}}>{{animal}}
+            {% endfor %}
+
+        <br>
     	<input type="submit">
     </form>
 </body>

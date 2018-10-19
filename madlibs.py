@@ -8,12 +8,16 @@ from flask import Flask, render_template, request
 # Flask wants to know this to know what any imported things are relative to.
 app = Flask(__name__)
 
+
+COLORS = ["pink","red","white"]
+ADJECTIVES = ["big","small","medium"]
+ANIMALS = ["dog","cat","hedgehog","yak"]
 AWESOMENESS = [
     'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza',
     'oh-so-not-meh', 'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful',
     'smashing', 'lovely',
 ]
-
+madlib_list = ["madlib.html","madlib2.html", "madlib3.html"]
 
 @app.route('/')
 def start_here():
@@ -45,11 +49,13 @@ def greet_person():
 def show_madlib_form():
     """show form."""
     response = request.args.get("yesno")
-
     if response == "no":
         return render_template("goodbye.html")
     if response == "yes":
-        return render_template("game.html")
+        return render_template("game.html",
+                                colors=COLORS,
+                                adjectives=ADJECTIVES,
+                                animals=ANIMALS)
 
 @app.route('/madlib')
 def show_madlib():
@@ -58,12 +64,17 @@ def show_madlib():
     color = request.args.get("color")
     noun = request.args.get("noun")
     adjective = request.args.get("adjective")
-    
-    return render_template("madlib.html",
+    animals = request.args.getlist("animals")
+    animals = ' and '.join(animals)
+    madlib = choice(madlib_list)
+
+    return render_template(madlib,
                                 person_name=person_name,
                                 color=color,
                                 noun=noun,
-                                adjective=adjective)
+                                adjective=adjective,
+                                animals=animals
+                                )
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
